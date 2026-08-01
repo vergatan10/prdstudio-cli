@@ -36,3 +36,23 @@ export interface ChecklistUpdateResponse {
 export interface CardMoveResponse {
   ok: true;
 }
+
+export interface ProjectOut {
+  id: string;
+  name: string;
+  description: string | null;
+  mode: string;
+  status: string;
+}
+
+export interface PrdOut {
+  versionNumber: number;
+  contentMd: string;
+  changelogSummary: string | null;
+  createdAt: string;
+}
+
+export interface PrdResponse {
+  project: ProjectOut | null;
+  prd: PrdOut | null;
+}

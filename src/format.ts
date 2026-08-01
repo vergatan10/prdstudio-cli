@@ -1,4 +1,4 @@
-import type { CardCurrentResponse, CardOut, ChecklistStatus, TaskNextResponse } from "./types.js";
+import type { CardCurrentResponse, CardOut, ChecklistStatus, PrdResponse, TaskNextResponse } from "./types.js";
 
 function checkbox(status: ChecklistStatus): string {
   if (status === "done") return "x";
@@ -27,4 +27,17 @@ export function formatTaskNext(data: TaskNextResponse): string {
 export function formatCardCurrent(data: CardCurrentResponse): string {
   if (!data.card) return "Tidak ada card yang sedang in_progress.";
   return formatCard(data.card);
+}
+
+export function formatPrd(data: PrdResponse): string {
+  if (!data.project) return "Project tidak ditemukan.";
+  const lines = [`Project: ${data.project.name} [${data.project.mode}, ${data.project.status}]`];
+  if (data.project.description) lines.push(data.project.description);
+  lines.push("");
+  if (!data.prd) {
+    lines.push("Belum ada draft PRD untuk project ini.");
+  } else {
+    lines.push(`--- PRD v${data.prd.versionNumber} ---`, "", data.prd.contentMd);
+  }
+  return lines.join("\n");
 }

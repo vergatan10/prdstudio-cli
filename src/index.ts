@@ -2,12 +2,14 @@
 import { Command } from "commander";
 import { clearConfig, configPath, saveConfig } from "./config.js";
 import { ApiError, apiRequest } from "./api.js";
-import { formatCardCurrent, formatTaskNext } from "./format.js";
+import { formatCardCurrent, formatPrd, formatTaskNext } from "./format.js";
+import { writeSkillFile } from "./skill.js";
 import type {
   CardCurrentResponse,
   CardMoveResponse,
   CardStatus,
   ChecklistUpdateResponse,
+  PrdResponse,
   TaskNextResponse,
 } from "./types.js";
 
@@ -33,7 +35,7 @@ const program = new Command();
 program
   .name("prdstudio")
   .description("CLI privat untuk PRD Studio Agent API (/api/cli/*) — lihat docs/4.PRD_CLI_MCP_Agent_Tooling_v1.md")
-  .version("1.0.0");
+  .version("1.1.0");
 
 program
   .command("login")
@@ -52,6 +54,23 @@ program
   .action(() => {
     clearConfig();
     console.log("Config lokal dihapus. Token masih aktif di server sampai di-revoke lewat UI Token Manager.");
+  });
+
+program
+  .command("init")
+  .description("Pasang skill \"PRD Studio Agent Loop\" ke AGENTS.md di folder saat ini (auto-load oleh agent)")
+  .action(() => {
+    const { path, created } = writeSkillFile();
+    console.log(`${created ? "Dibuat" : "Diperbarui"}: ${path}`);
+    console.log("Agent yang membaca AGENTS.md (mis. Claude Code) akan otomatis memuat instruksi loop di atasnya.");
+  });
+
+program
+  .command("get-prd")
+  .description("Ambil PRD versi terbaru + info project — jalankan di awal sesi sebelum ambil task")
+  .option("--json", "Output JSON mesin-terbaca")
+  .action(async (opts: { json?: boolean }) => {
+    await run<PrdResponse>(() => apiRequest<PrdResponse>("GET", "/api/cli/prd"), !!opts.json, formatPrd);
   });
 
 const task = program.command("task").description("Aksi terkait task/card aktif berikutnya");
