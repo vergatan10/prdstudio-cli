@@ -1,0 +1,29 @@
+{
+  "name": "prdstudio-cli",
+  "version": "1.0.0",
+  "description": "Private CLI wrapper for PRD Studio's agent API (/api/cli/*) — login once, then run the agent loop without hand-rolled curl.",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "prdstudio": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/index.ts",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4"
+  }
+}
