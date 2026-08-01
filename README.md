@@ -15,7 +15,7 @@ dan validasi ada di server (`/api/cli/*`), sumber kebenaran satu-satunya.
 ## Install
 
 ```bash
-npm install -g github:vergatan10/prdstudio-cli#v1.0.0
+npm install -g github:vergatan10/prdstudio-cli#v1.1.0
 ```
 
 Butuh Node.js ≥ 18. Instalasi lewat repo GitHub privat/public seperti ini otomatis menjalankan
@@ -47,7 +47,9 @@ export PRDSTUDIO_URL=https://prdstudio.app
 ```bash
 prdstudio login --token <token> --url <baseUrl>
 prdstudio logout
+prdstudio init                       # pasang skill "PRD Studio Agent Loop" ke AGENTS.md (auto-load agent)
 
+prdstudio get-prd [--json]           # jalankan sekali di awal sesi, sebelum ambil task
 prdstudio task next [--json]
 prdstudio card current [--json]
 prdstudio checklist done <itemId> [--json]
@@ -57,6 +59,15 @@ prdstudio card move <cardId> --to <todo|in_progress|done|error> [--summary "..."
 
 Tiap command punya flag `--json` untuk output mesin-terbaca (dipakai agent); tanpa flag itu,
 outputnya human-readable. Exit code non-zero + pesan error kalau API mengembalikan 401/404/400.
+
+### `prdstudio init`
+
+Menulis (atau memperbarui) blok bertanda `<!-- BEGIN:prdstudio-skill -->...<!-- END:prdstudio-skill -->`
+di `AGENTS.md` pada folder saat ini, berisi instruksi loop lengkap (login sekali → `get-prd` →
+loop `task next` → `checklist done/error` → `card move`). Agent yang membaca `AGENTS.md` secara
+otomatis (mis. Claude Code) langsung memuat instruksi ini tiap sesi baru, tanpa prompt perlu
+di-paste manual. Idempotent — jalankan ulang kapan saja, blok yang sudah ada di-replace, bukan
+diduplikasi.
 
 ## Contoh loop agent
 
