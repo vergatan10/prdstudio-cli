@@ -15,7 +15,7 @@ dan validasi ada di server (`/api/cli/*`), sumber kebenaran satu-satunya.
 ## Install
 
 ```bash
-npm install -g github:vergatan10/prdstudio-cli#v1.1.0
+npm install -g github:vergatan10/prdstudio-cli#v1.1.1
 ```
 
 Butuh Node.js ≥ 18. Instalasi lewat repo GitHub privat/public seperti ini otomatis menjalankan
