@@ -4,8 +4,7 @@ Command-line wrapper privat untuk REST API `/api/cli/*` milik [PRD Studio](https
 Dipakai AI coding agent (atau manusia) untuk mengambil task dari kanban board, mengerjakannya, dan
 update status — tanpa menyusun `curl` manual tiap kali.
 
-Ini **bukan** package publik. Tidak pernah di-`npm publish`, tidak terdaftar di npm registry mana
-pun — install langsung dari repo GitHub ini. Lihat
+Package ini dipublikasikan di npm registry sebagai [`@vergatan10/prdstudio-cli`](https://www.npmjs.com/package/@vergatan10/prdstudio-cli). Lihat
 [`docs/4.PRD_CLI_MCP_Agent_Tooling_v1.md`](https://github.com/vergatan10/prd-studio/blob/main/docs/4.PRD_CLI_MCP_Agent_Tooling_v1.md)
 di repo utama untuk konteks produk lengkap.
 
@@ -14,13 +13,19 @@ dan validasi ada di server (`/api/cli/*`), sumber kebenaran satu-satunya.
 
 ## Install
 
+Install secara global via npm:
+
 ```bash
-npm install -g github:vergatan10/prdstudio-cli#v1.1.1
+npm install -g @vergatan10/prdstudio-cli
 ```
 
-Butuh Node.js ≥ 18. Instalasi lewat repo GitHub privat/public seperti ini otomatis menjalankan
-`npm run build` (lewat `prepare` script) sebelum bin `prdstudio` dipakai — tidak perlu langkah
-build manual.
+Atau jalankan langsung tanpa instalasi global menggunakan `npx`:
+
+```bash
+npx @vergatan10/prdstudio-cli login --token pk_xxxxxxxxxxxxxxxx --url https://prdstudio.app
+```
+
+Butuh Node.js ≥ 18.
 
 ## Setup
 

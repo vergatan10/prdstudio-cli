@@ -1,11 +1,11 @@
 {
-  "name": "prdstudio-cli",
+  "name": "@vergatan10/prdstudio-cli",
   "version": "1.1.1",
   "description": "Private CLI wrapper for PRD Studio's agent API (/api/cli/*) — login once, then run the agent loop without hand-rolled curl.",
-  "private": true,
+  "author": "Vergatan10",
   "type": "module",
   "bin": {
-    "prdstudio": "./dist/index.js"
+    "prdstudio": "dist/index.js"
   },
   "files": [
     "dist"
