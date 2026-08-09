@@ -41,7 +41,7 @@ program
   .command("login")
   .description("Simpan token + base URL project ke ~/.prdstudio/config.json")
   .requiredOption("--token <token>", "Token CLI/Agent project, dari /projects/:id/settings di web app")
-  .requiredOption("--url <baseUrl>", "Base URL PRD Studio, mis. https://prdstudio.app")
+  .requiredOption("--url <baseUrl>", "Base URL PRD Studio, mis. https://prdstudio.verga.dev")
   .action((opts: { token: string; url: string }) => {
     saveConfig({ token: opts.token, baseUrl: opts.url });
     console.log(`Tersimpan di ${configPath()} (permission 600).`);

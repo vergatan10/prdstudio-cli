@@ -22,7 +22,7 @@ npm install -g @vergatan10/prdstudio-cli
 Atau jalankan langsung tanpa instalasi global menggunakan `npx`:
 
 ```bash
-npx @vergatan10/prdstudio-cli login --token pk_xxxxxxxxxxxxxxxx --url https://prdstudio.app
+npx @vergatan10/prdstudio-cli login --token pk_xxxxxxxxxxxxxxxx --url https://prdstudio.verga.dev
 ```
 
 Butuh Node.js ≥ 18.
@@ -30,7 +30,7 @@ Butuh Node.js ≥ 18.
 ## Setup
 
 ```bash
-prdstudio login --token pk_xxxxxxxxxxxxxxxx --url https://prdstudio.app
+prdstudio login --token pk_xxxxxxxxxxxxxxxx --url https://prdstudio.verga.dev
 ```
 
 Token didapat dari halaman **Token CLI/Agent** di `/projects/<id>/settings` pada web app. Config
@@ -44,7 +44,7 @@ Untuk CI/skrip tanpa file config, override lewat env var:
 
 ```bash
 export PRDSTUDIO_TOKEN=pk_xxxxxxxxxxxxxxxx
-export PRDSTUDIO_URL=https://prdstudio.app
+export PRDSTUDIO_URL=https://prdstudio.verga.dev
 ```
 
 ## Commands
@@ -97,7 +97,7 @@ memanggilnya.
 
 Kalau agent-mu mendukung Model Context Protocol native (mis. Claude Code), kamu bisa skip CLI ini
 sepenuhnya dan connect langsung ke MCP server yang sudah di-hosting di
-`https://prdstudio.app/api/mcp` (Streamable HTTP, auth `Authorization: Bearer <token>` yang sama).
+`https://prdstudio.verga.dev/api/mcp` (Streamable HTTP, auth `Authorization: Bearer <token>` yang sama).
 Lihat bagian "MCP server (`/api/mcp`)" di README repo utama.
 
 ## Development
