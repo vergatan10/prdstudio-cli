@@ -16,6 +16,8 @@ export interface CardOut {
   status: CardStatus;
   position: number;
   summary: string | null;
+  feature?: string | null;
+  category?: string | null;
   checklist?: ChecklistItemOut[];
 }
 

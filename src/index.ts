@@ -35,7 +35,7 @@ const program = new Command();
 program
   .name("prdstudio")
   .description("CLI privat untuk PRD Studio Agent API (/api/cli/*) — lihat docs/4.PRD_CLI_MCP_Agent_Tooling_v1.md")
-  .version("1.1.1");
+  .version("1.1.3");
 
 program
   .command("login")

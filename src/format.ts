@@ -7,13 +7,22 @@ function checkbox(status: ChecklistStatus): string {
 }
 
 function formatCard(card: CardOut, previousSummary?: string | null): string {
-  const lines = [`Card: ${card.title} [${card.status}]`];
+  // The card id is required for `prdstudio card move <cardId>` — without it
+  // the human-readable output was a dead end unless you re-ran with --json.
+  const lines = [`Card: ${card.title} [${card.status}] (${card.id})`];
+  const context = [card.feature, card.category].filter(Boolean).join(" / ");
+  if (context) lines.push(`Fitur: ${context}`);
   if (card.description) lines.push(card.description);
   if (previousSummary) lines.push("", `Ringkasan task sebelumnya: ${previousSummary}`);
   if (card.checklist && card.checklist.length > 0) {
     lines.push("", "Checklist:");
     for (const item of card.checklist) {
       lines.push(`  [${checkbox(item.status)}] ${item.title} (${item.id})`);
+      if (item.detailMd) {
+        for (const detailLine of item.detailMd.trim().split("\n")) {
+          lines.push(`      ${detailLine}`);
+        }
+      }
     }
   }
   return lines.join("\n");
